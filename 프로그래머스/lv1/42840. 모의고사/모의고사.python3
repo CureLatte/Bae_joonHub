@@ -1,0 +1,34 @@
+def solution(answers):
+    answer = []
+    
+    
+    
+    first = [1,2,3,4,5]   
+    second = [ 2, 1, 2, 3, 2, 4, 2, 5]   
+    third = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]  
+    
+    all_patterns = [first, second, third]
+    
+    all_result =[0,0,0]
+    
+    
+    
+    for answer_index, check in enumerate(answers):
+        
+        for index, pattern in enumerate(all_patterns):
+            
+            if answer_index >= len(pattern):
+
+                new_index = answer_index % len(pattern)
+            else: 
+                new_index = answer_index
+            if pattern[new_index] == check:
+            
+                all_result[index] +=1 
+    
+
+    
+    for index, result in enumerate(all_result):
+        if result == max(all_result):
+            answer.append(index+1)
+    return answer
