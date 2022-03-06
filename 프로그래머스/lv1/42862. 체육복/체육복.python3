@@ -1,0 +1,29 @@
+def solution(n, lost, reserve):
+    answer = 0
+    
+
+    
+    for index_lost, k_lost in enumerate(lost):
+        if k_lost in reserve:
+            reserve.pop(reserve.index(k_lost))
+            lost.pop(index_lost)
+                  
+    lost.sort()
+    reserve.sort()
+    
+    print(lost, reserve)
+    
+    for lost_number in lost: 
+        
+        if  lost_number in reserve: 
+            reserve.pop(reserve.index(lost_number))
+            answer += 1
+        
+        elif  lost_number - 1 in reserve: 
+            reserve.pop(reserve.index(lost_number - 1))
+            answer += 1
+        elif lost_number + 1 in reserve: 
+            reserve.pop(reserve.index(lost_number + 1))
+            answer += 1
+        
+    return answer + n - len(lost)
