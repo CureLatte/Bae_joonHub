@@ -1,0 +1,17 @@
+def solution(nums):
+    answer = len(nums)/2
+    
+    all_pokemon = {}
+    
+    for num in nums: 
+        if num not in all_pokemon:
+            all_pokemon[num] = 0
+        else: 
+            all_pokemon[num] +=1
+    
+    print(len(all_pokemon))
+    
+    if len(all_pokemon)<= answer: 
+        return len(all_pokemon)
+    else:
+        return answer
