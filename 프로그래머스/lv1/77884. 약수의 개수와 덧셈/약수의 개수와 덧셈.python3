@@ -1,0 +1,14 @@
+import math
+
+def solution(left, right):
+    answer = 0
+    for number in range(left, right+1):
+        print('number is',number)
+        if  math.sqrt(number).is_integer():
+            print('number\' divisor is odd')
+            answer -= number
+        else:
+            answer += number
+        
+
+    return answer
