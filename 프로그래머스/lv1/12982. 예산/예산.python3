@@ -1,0 +1,13 @@
+def solution(d, budget):
+    answer = 0
+    d.sort()
+    sum_money = 0
+    for money in d: # 5
+        sum_money += money
+        if sum_money > budget: # 6 > 9 : False
+            break
+        else: 
+                                # sum_money = 6
+            answer  += 1        # answer = 3
+        
+    return answer
