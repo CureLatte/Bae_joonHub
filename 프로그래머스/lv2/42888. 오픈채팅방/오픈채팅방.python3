@@ -1,0 +1,29 @@
+def solution(record):
+    answer = []
+    logs = []
+    users = {}
+    change_list = []
+    
+    for commend in record:
+        uid = commend.split(' ')[1]
+        try:
+            nickname = commend.split(' ')[2]
+            users[uid] = nickname
+        except:
+            continue
+            
+    for commend in record:
+        action = commend.split(' ')[0]
+        uid = commend.split(' ')[1]
+        
+        if action == 'Enter':
+            log = users[uid] + '님이 들어왔습니다.'
+        elif action == 'Leave':
+            log = users[uid] + '님이 나갔습니다.'
+        else:
+            continue
+        
+        logs.append(log)
+    
+    
+    return logs
