@@ -1,0 +1,18 @@
+import math
+
+def solution(w,h):
+    answer = 0
+    # w, h 가 1일 때는 무조건 0 
+    if w==1 or h ==1 :
+        return 0
+    for x in range(0, w):
+        prev_y = math.floor(h * x / w) 
+        next_y = math.ceil(h * (x + 1) / w)
+        gap = next_y - prev_y
+        answer += gap
+        # 정수를 지났을 때 
+        if h * (x + 1) /w== int(h * (x + 1) / w):
+            break
+    answer *= int(h / next_y)
+        
+    return w*h - answer
