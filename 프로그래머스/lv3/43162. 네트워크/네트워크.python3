@@ -1,0 +1,21 @@
+def solution(n, computers):
+    answer = 0
+    visited = []
+    stack = []
+    network = []
+    cnt = 0
+    all_computer_count = list(range(len(computers)))
+    while len(all_computer_count) != 0: # all_computer_count = [1,2]
+        visited = [] # visited = []
+        stack.append(all_computer_count[0])   # stack = [0]
+        while len(stack) != 0:  # len(stack) == 1
+            current_computer_index = stack.pop() # current_computer_index = 0
+            visited.append(current_computer_index) # visited=[0]
+            for connect_computer_index, connect_computer_value in enumerate(computers[current_computer_index]): # connect_computer = 1
+                if connect_computer_value == 1 and connect_computer_index not in visited: # true
+                    stack.append(connect_computer_index)  # stack = [1]
+        
+        all_computer_count = list(set(all_computer_count) - set(visited))
+        network.append(visited)
+    print(network)
+    return len(network)
