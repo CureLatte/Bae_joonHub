@@ -1,0 +1,42 @@
+def next_words(target, words):
+    new_word_list = []
+    for word in words:
+        cnt = 0
+        for i in range(len(target)):
+            if target[i] != word[i]:
+                cnt += 1
+        if cnt == 1:
+            new_word_list.append(word)
+    return new_word_list
+
+def solution(begin, target, words):
+    answer = []
+    visited = []
+    queue = [begin]
+    queue_check =[]
+    cnt = 0
+    graph_word = {}
+    
+    for word in words:
+        graph_word[word] = next_words(word, words)
+    graph_word[begin] = next_words(begin, words)
+    
+    if target not in words:
+        return 0
+    
+    while len(queue) != 0:
+        current_word = queue.pop(0)
+        if current_word == target:
+            break
+        visited.append(current_word)
+        next_list = graph_word[current_word]
+        for next_word in next_list:
+            if next_word not in visited and next_word not in queue_check:
+                queue.append(next_word)
+                queue_check.append(next_word)
+        cnt += 1
+        print(cnt)
+        
+        
+    
+    return cnt
