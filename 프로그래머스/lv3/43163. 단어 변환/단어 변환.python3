@@ -13,10 +13,12 @@ def solution(begin, target, words):
     distance = []
     visited = []
     queue = [begin]
+    temp_queue = []
     next_cnt = 1
     queue_check =[]
     cnt = 0
     graph_word = {}
+    level = 0
     
     for word in words:
         graph_word[word] = next_words(word, words)
@@ -26,23 +28,31 @@ def solution(begin, target, words):
         return 0
     
     while len(queue) != 0:
-        queue_size = len(queue)
-        
         current_word = queue.pop(0)
+        
+        
         
         visited.append(current_word)
         next_list = graph_word[current_word]
         check = 0
         for next_word in next_list:
             if next_word not in visited and next_word not in queue_check:
-                queue.append(next_word)
                 queue_check.append(next_word)
+                temp_queue.append(next_word)
                 check += 1
+                
+        if target in temp_queue:
+            break
+        
+        if len(queue) == 0:
+            level += 1
+            queue = temp_queue
+            temp_queue = []  
+        
+        
         
         if check != 0:
             cnt += 1
-            print(check)
-        if target in queue:
-            break
-        
-    return cnt
+
+    print(level)
+    return level +1
