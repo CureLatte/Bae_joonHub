@@ -1,0 +1,17 @@
+from collections import deque
+
+
+def solution(prices):
+    count = 0 
+    answer=[]
+    for x in range(len(prices)):
+        target = prices[x]
+        for y in range(len(prices)-x):
+            if target <= prices[y+x]  :
+                count+=1
+            else :
+                count+=1
+                break
+        answer.append(count-1)
+        count=0
+    return answer
