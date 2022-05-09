@@ -1,0 +1,20 @@
+from itertools import product
+
+def solution(n):
+    answer = ''
+    target = ['1', '2', '4']
+    i = 1
+    while True:
+        n -= 3**i
+        if n <= 0:
+            n += 3**i
+            break
+        else:
+            i += 1
+    n -= 1
+    for count in range(i):
+        index = n % 3
+        answer = target[index] + answer
+        n = n//3
+
+    return answer
