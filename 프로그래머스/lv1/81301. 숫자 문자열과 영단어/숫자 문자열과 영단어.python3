@@ -1,0 +1,12 @@
+def solution(s):
+    answer = 0
+    
+    letter_string=['zero','one', 'two','three','four','five','six','seven','eight','nine']
+    
+    temp = s
+    
+    
+    
+    for index,letter in enumerate(letter_string):
+        temp = temp.replace(letter, str(index))
+    return int(temp)
