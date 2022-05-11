@@ -1,0 +1,24 @@
+def solution(lottos, win_nums):
+    answer = []
+    
+    cnt = 0
+    zero_cnt = 0
+    
+    for lotto_number in lottos:
+        if lotto_number in win_nums:
+            cnt += 1
+        elif lotto_number == 0:
+            zero_cnt += 1
+        
+    best_case = 7 - (cnt + zero_cnt)
+    if best_case >= 6:
+        best_case = 6
+        
+    worse_case = 7 - (cnt)
+    if worse_case >= 6:
+        worse_case = 6
+    
+
+    answer=[best_case, worse_case]
+    
+    return answer
