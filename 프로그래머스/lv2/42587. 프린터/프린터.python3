@@ -1,0 +1,14 @@
+def solution(priorities, location):
+    total = []
+    answer=[]
+    for x in zip(priorities, range(len(priorities))):
+        total.append(x)
+
+    while(len(total)!=0):
+        maxvalue = max(total)[0]
+        if total[0][0] < maxvalue:
+            total.append(total.pop(0))
+        else : 
+            answer.append(total[0][1])
+            temp = total.pop(0)
+    return answer.index(location)+1
