@@ -1,0 +1,37 @@
+def solution(id_list, report, k):
+    current_report = {}
+    answer = ''
+
+    
+    for reporter_reported in report: 
+        reporter = reporter_reported.split(' ')[0] # ['muzi', 'frodo']
+        reported = reporter_reported.split(' ')[1]
+        if reported not in current_report:
+            current_report[reported] = [1, [reporter]]; 
+            
+        else: 
+            if reporter not in current_report[reported][1]:
+                current_report[reported][0] +=1
+                current_report[reported][1].append(reporter)
+    
+    send_mail_report = {}
+    
+    
+    
+    for a in id_list:
+        send_mail_report[a] = 0
+            
+    
+    for reported, check_list in current_report.items():
+        if check_list[0] >= int(k):
+            for reporter in check_list[1]:
+                send_mail_report[reporter] += 1
+                
+    
+    answer = [0] * len(id_list)
+    
+    for index, target in enumerate(id_list):
+        if target in send_mail_report:
+            answer[index] = send_mail_report[target]
+    
+    return answer
