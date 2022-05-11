@@ -1,0 +1,9 @@
+def solution(sizes):
+    for memo in sizes:
+        memo.sort(reverse=True)
+    sizes.sort(key=lambda x:x[0], reverse=True)
+    width = sizes[0][0]
+    sizes.sort(key=lambda x:x[1], reverse=True)
+    height = sizes[0][1]
+    
+    return width * height
