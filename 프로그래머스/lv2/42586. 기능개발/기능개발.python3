@@ -1,0 +1,49 @@
+class queue():
+    
+    def __init__(self):
+        self.data=[]
+    def enqueue(self,item):
+        self.data.append(item)
+        
+    def dequeue(self):
+        return self.data.pop(0)
+    
+    def size(self):
+        return len(self.data)
+    
+    def peek(self):
+        return self.data[0]
+    
+    def dequeueall(self):
+        answer = []
+        for i in self.data:
+            answer.append(i)
+        return answer
+    
+    def clear(self):
+        self.data=[]
+    
+    
+
+def solution(progresses, speeds):
+    answer=[]
+    q=queue()
+    days=[]
+    for i in range(len(progresses)):
+        cal = (100-progresses[i])//speeds[i]
+        cal_check = (100-progresses[i])%speeds[i]
+        if cal_check !=0:
+            cal = cal+1
+        days.append( cal )
+        standard=days[0]
+    for x in range(len(days)):
+    
+        if days[x] <= standard:
+            q.enqueue(days[x])
+        else :
+            standard= days[x]
+            answer.append(q.size())
+            q.clear()
+            q.enqueue(days[x])
+    answer.append(q.size())        
+    return(answer)
