@@ -1,0 +1,16 @@
+import heapq
+def solution(scoville, K):
+    heapq.heapify(scoville)
+    cmt =0
+    while (scoville[0]<K):
+        try:    
+                data1 = heapq.heappop(scoville)
+                data2 = heapq.heappop(scoville)
+                new = data1 + data2*2
+                heapq.heappush(scoville,new)
+                cmt +=1
+        except:
+                
+                return -1
+        
+    return cmt
