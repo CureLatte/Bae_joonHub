@@ -1,0 +1,23 @@
+def solution(genres, plays):
+    
+    answer = []
+    kind = {}
+    
+    for i in range(len(genres)):
+        if genres[i] in kind:
+            kind[genres[i]]['allplayed'] += plays[i]
+            kind[genres[i]]['list'][i] = plays[i]
+        
+        else:
+            kind[genres[i]]={'list': {i:plays[i]}, 'allplayed': plays[i] }
+            
+    a=sorted(kind.items(), key = lambda x : -x[1]['allplayed'])
+
+    
+    for x in a:
+        c = sorted(x[1]['list'].items(), key = lambda x : -x[1])
+        for i in range(0,len(c)) :
+            answer.append(c[i][0])
+            if i == 1:
+                break
+    return answer
