@@ -1,0 +1,17 @@
+def solution(skill, skill_trees):
+    answer = 0
+    
+    for idx_tree in range(len(skill_trees)):
+        case = skill_trees[idx_tree]
+        check = ''
+        
+        for c in case:
+            if c in skill:
+                check += c         
+        
+        for i in range(len(skill)):
+            if check == skill[0:i+1] or check=='':
+                answer += 1
+                break
+        
+    return answer
