@@ -1,0 +1,24 @@
+def solution(phone_book):
+    # 접두어를 비교가 필요함 
+    # 접두어의 경우 길이가 가장 적은 것을 기준을 비교
+    # 번호의 길이 파악, 번호를 저장 
+    
+#     number_len = []
+#     for number in phone_book:
+#         number_len.append([len(number),number])
+        
+#     number_len.sort(key = lambda x:x[0])
+    
+#     for index in range(len(number_len)):
+#         for k in range(index+1,len(number_len)):
+#             if number_len[index][1] in number_len[k][1]:
+#                 return False
+    
+    phone_book.sort()
+    
+    for index in range(len(phone_book)-1):
+        if phone_book[index] == phone_book[index+1][:len(phone_book[index])]:
+            return False
+        
+        
+    return True
