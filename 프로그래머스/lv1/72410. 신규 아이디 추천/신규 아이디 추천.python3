@@ -1,0 +1,31 @@
+def solution(new_id):
+    # 1 단계 
+    new_id = new_id.lower()
+    # 2 단계 
+    check_2_list = ['-','_','.']
+    for check in new_id:
+        if not check.isalpha() and check not in check_2_list and not check.isdigit():
+            new_id = new_id.replace(check, '')
+    # 3 단계 
+    while '..' in new_id:
+        new_id = new_id.replace('..', '.')
+
+    # 4 단계 
+    new_id = new_id.strip('.') 
+    
+    # 5 단계 
+    if len(new_id) <= 0:
+        new_id += 'a'
+        
+    # 6 단계 
+    if len(new_id)>= 16:
+        new_id=new_id[:15]
+        if new_id[-1] == '.':
+            new_id = new_id[:14]
+        
+    # 7단계 
+    while len(new_id) < 3: 
+        new_id += new_id[-1]
+    
+    answer = new_id
+    return answer
