@@ -1,0 +1,15 @@
+def solution(clothes):
+    gearlist = []
+    num = []
+    answer = 1
+    for i in range(len(clothes)):
+        name = clothes[i]
+        if name[-1] not in gearlist:
+            gearlist.append(name[-1])
+            num.append(1)
+        else :
+            idx = gearlist.index(name[-1])
+            num[idx] +=1 
+    for i in range(len(num)):
+        answer = answer * (num[i]+1)
+    return answer -1
