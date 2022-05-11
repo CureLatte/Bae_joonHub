@@ -1,0 +1,17 @@
+from itertools import combinations
+
+def is_prime(value):
+    for k in range(2, value):
+        if value % k == 0:
+            return False
+    return True
+
+def solution(nums):
+    answer= 0
+    all_case = list(combinations(nums, 3))
+    
+    for case in all_case:
+        if is_prime(sum(case)):
+            answer+= 1
+
+    return answer
