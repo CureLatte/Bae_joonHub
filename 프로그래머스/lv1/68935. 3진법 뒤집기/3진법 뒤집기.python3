@@ -1,0 +1,19 @@
+def solution(n):
+    answer = 0
+    three=[]
+    
+    # <3 진법 전환>
+    # 1. 변환하고 싶은 숫자를 3으로 나눈다!
+    # 2. 나머지를 적어 놓는다!
+    # 3. 몫을 또 3으로 나눈다! (1번, 2번 반봅) 
+    # 4. 더 이상 나눌 수 없을 때까지 나눈다.
+    # 5. 나머지를 역순으로 적는다! 
+    
+    while True:
+        if n <= 0:
+            break
+        three.append(n % 3) 
+        n = n // 3
+    for i in range(len(three)):
+        answer += three[i] * 3 ** (len(three) - i-1)
+    return answer
