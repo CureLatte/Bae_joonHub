@@ -8,6 +8,4 @@ def solution(numbers):
             if index1 != index2:
                 answer.append(num1 + num2)
     
-    answer.sort()
-    
     return sorted(list(set(answer)))
