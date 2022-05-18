@@ -1,0 +1,14 @@
+import math
+
+def is_prime(number):
+    for a in range(2, int(math.sqrt(number) + 1)):
+        if number % a ==0:
+            return False
+    return True
+        
+def solution(n):
+    answer = 0
+    for number in range(2, n+1):
+        if is_prime(number):
+            answer += 1
+    return answer
