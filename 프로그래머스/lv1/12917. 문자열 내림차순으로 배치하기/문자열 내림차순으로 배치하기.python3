@@ -1,0 +1,22 @@
+def solution(s):
+    answer = ''
+    upper = []
+    lower = []
+    for index in range(len(s)):
+        if s[index].isupper():
+            upper.append(s[index])
+        else:
+            lower.append(s[index])
+            
+    upper.sort(reverse=True)
+    lower.sort(reverse=True)
+    
+    for letter in lower:
+        answer += letter
+    for letter in upper:
+        answer += letter
+    
+    print(upper)
+    print(lower)
+    
+    return answer
