@@ -1,0 +1,6 @@
+def solution(n):
+    answer = ''
+    sentence = '수박' * (n // 2 +1)
+    print(sentence)
+    
+    return sentence[:n]
