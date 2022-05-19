@@ -10,11 +10,12 @@ def solution(s, n):
         if letter == ' ':
             answer += letter
             continue
-        if lower_start <= ord(letter) <= lower_finish:
+        if letter.islower():
+            print('lower!')
             if new_code > lower_finish:
                 new_n = new_code - lower_finish -1
                 new_code = lower_start + new_n
-        elif upper_start <= ord(letter) <= upper_finish:
+        elif letter.isupper():
             if new_code > upper_finish:
                 new_n = new_code - upper_finish
                 new_code = upper_start + new_n-1
