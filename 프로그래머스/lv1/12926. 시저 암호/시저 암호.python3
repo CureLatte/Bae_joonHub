@@ -1,0 +1,27 @@
+def solution(s, n):
+    lower_start = 97
+    lower_finish = 122
+    upper_start = 65
+    upper_finish = 90
+    answer = ''
+    
+    for letter in s:
+        new_code = ord(letter) + n
+        if letter == ' ':
+            answer += letter
+            continue
+        if lower_start <= ord(letter) <= lower_finish:
+            if new_code > lower_finish:
+                new_n = new_code - lower_finish -1
+                new_code = lower_start + new_n
+        elif upper_start <= ord(letter) <= upper_finish:
+            if new_code > upper_finish:
+                new_n = new_code - upper_finish
+                new_code = upper_start + new_n-1
+        print(chr(new_code))
+        answer+=(chr(new_code))
+            
+            
+    
+    
+    return answer
