@@ -17,6 +17,4 @@ def solution(s):
                     temp += word.lower()
                 else:
                     temp += word
-    print(temp)
     return temp
-        
