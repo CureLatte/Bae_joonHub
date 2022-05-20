@@ -1,0 +1,64 @@
+def seperate(p):
+    u = ''
+    v = ''
+    if p == '':
+        return p
+    
+    left_stack = 0
+    right_stack = 0
+    for index, letter in enumerate(p):
+        if letter =='(':
+            left_stack += 1
+        elif letter == ')':
+            right_stack += 1
+        u += letter
+        ## 균형잡힌 문자열 로 나뉨
+        if left_stack == right_stack:
+            v = p[index+1:]
+            if check(u) is False:
+                u = transform_to_right(u , v)
+                return u
+            else:
+                return u + seperate(v)
+    
+def check(p):
+    print("check", p)
+    stack = []
+    for letter in p:
+        if letter == '(':
+            stack.append(letter)
+        elif letter == ')':
+            if len(stack) == 0:
+                return False
+            compare = stack.pop()
+            if compare != '(':
+                return False
+            
+    if len(stack) == 0:
+        return True
+    else: 
+        return False
+    
+
+def transform_to_right(p, v):
+    print("transform_to_right", p)
+    if len(p) < 2:
+        return ''
+    temp = p[1:-1]
+    result = ''
+    for a in temp:
+        if a =="(":
+            result += ')'
+        elif a == ')':
+            result += '('
+    result = "("  + seperate(v) + ")" + result
+    return  result
+
+
+def solution(p):
+    answer = ''
+    # u, v 분리하기 
+    answer = seperate(p)
+    print(answer)
+    
+    return answer
