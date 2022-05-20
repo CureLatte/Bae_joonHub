@@ -1,0 +1,22 @@
+def solution(s):
+    index = -1
+    temp = ''
+    for word in s:
+        if word == " ":
+            temp += " "
+            index = -1
+        else:
+            index += 1
+            if index % 2 ==0:
+                if word.islower():
+                    temp += word.upper()
+                else:
+                    temp += word
+            else:
+                if word.isupper():
+                    temp += word.lower()
+                else:
+                    temp += word
+    print(temp)
+    return temp
+        
