@@ -1,0 +1,58 @@
+class multi_set:
+    def __init__(self, filtered_list):
+        self.list = None
+        self.all_case = None
+        self.dict = None
+        self.make_case(filtered_list)
+        self.filtered()
+        
+        
+    def make_case(self, input_string):
+        self.all_case = []
+        for index in range(len(input_string)-1):
+            self.all_case.append(input_string[index: index+ 2])
+        
+    
+    def filtered(self):
+        self.list = []
+        self.dict = {}
+        for word in self.all_case:
+            if word[0].isalpha() and word[1].isalpha():
+                self.list.append(word.upper())
+                if word.upper() not in self.dict:
+                    self.dict[word.upper()] = 1
+                else:
+                    self.dict[word.upper()] += 1
+                
+        
+    
+        
+def solution(str1, str2):
+    answer = 0
+    multi1 = multi_set(str1)
+    multi2 = multi_set(str2)
+
+    
+    union_len = 0
+    inter_len = 0
+    
+    all_case = list((set(multi1.list).union(set(multi2.list))))
+    
+    for case in all_case:
+        if case in multi1.list and case in multi2.list:
+            inter_len += min(multi1.dict[case], multi2.dict[case])
+            union_len += max(multi1.dict[case], multi2.dict[case])
+        elif case in multi1.list and case not in multi2.list:
+            union_len += multi1.dict[case]
+        elif case not in multi1.list and case in multi2.list:
+            union_len += multi2.dict[case]
+    
+    if union_len == 0:
+        union_len = 1
+        inter_len = 1
+    
+    return int((inter_len / union_len)* 65536)
+
+
+            
+        
