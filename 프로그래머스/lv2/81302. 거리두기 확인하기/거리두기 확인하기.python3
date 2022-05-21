@@ -1,0 +1,66 @@
+def check(place):
+    drow = [0,-1,0,1]
+    dcol = [-1,0,1,0]
+    
+    drow2 = [1,1,-1,-1]
+    dcol2 = [1,-1,1,-1]
+    
+    
+    for row_index, row in enumerate(place):
+        for col_index,col in enumerate(row):
+            # 8가지 방방햐으로 더하기 
+            # 방향 
+            if place[row_index][col_index] == 'P':
+                for d in range(4):
+                    
+                    next_row = row_index + drow[d]
+                    next_col = col_index + dcol[d]
+
+                    if next_row < 0 or next_row >= 5 or next_col < 0 or next_col >=5:
+                        pass
+                    else:
+                        if place[next_row][next_col] == 'P':                            
+                            status = 1 
+                            return False
+                    
+                    next_next_row = next_row + drow[d]
+                    next_next_col = next_col + dcol[d]
+
+                    if next_next_row < 0 or next_next_row >= 5 or next_next_col < 0 or next_next_col >=5:
+                        pass
+                    else:
+                        if place[next_row][next_col] == 'O' and place[next_next_row][next_next_col]=='P':
+                            status = 1
+                            return False
+                    
+                    # 대각선 방향 체크
+                    next_cross_row = row_index + drow2[d]
+                    next_cross_col = col_index + dcol2[d]
+                    
+                    # print("current", row_index, col_index)
+                    # print("next_cross", next_cross_row, next_cross_col)
+                    
+                    if next_cross_row < 0 or next_cross_row >= 5 or next_cross_col < 0 or next_cross_col >=5:
+                        pass
+                    else:
+                        
+                        # print("check1 : ",next_cross_row, col_index )
+                        # print("check2 : ",row_index, next_cross_col )
+                        if place[next_cross_row][next_cross_col]=='P' and (place[next_cross_row][col_index] == 'O' or place[row_index][next_cross_col]=='O'):
+                            
+                            return False
+    return True
+    
+
+def solution(places):
+    answer = []
+    cnt = 0
+    for place in places:
+        print(cnt)
+        cnt += 1
+        if check(place):
+            answer.append(1)
+        else:
+            answer.append(0)
+    print(answer)
+    return answer
