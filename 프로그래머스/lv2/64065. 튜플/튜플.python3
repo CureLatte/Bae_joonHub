@@ -1,0 +1,20 @@
+def solution(s):
+    answer = []
+    data = []
+    values = []
+    
+    for term in s[2:-2].split("},{"):
+        data.append(term.split(','))
+    sorted_data = sorted(data, key=lambda x : len(x))
+    
+    values.append(int(sorted_data[0][0]))
+    
+    for index in range(1, len(sorted_data)):
+        pre_a = sorted_data[index-1]
+        current_a = sorted_data[index]
+        
+        temp = list(set(current_a) - set(pre_a))
+        
+        values.append(int(temp[0]))
+
+    return values
