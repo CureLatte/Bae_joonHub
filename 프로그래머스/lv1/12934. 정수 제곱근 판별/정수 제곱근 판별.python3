@@ -1,0 +1,12 @@
+import math
+
+def solution(n):
+    answer = 0
+    check = math.sqrt(n)
+
+    if check == int(check):
+        return (int(check)+1)**2
+    else:
+        
+    
+        return -1
