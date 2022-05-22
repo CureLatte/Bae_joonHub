@@ -1,0 +1,58 @@
+from itertools import permutations
+import math
+
+def calculatorBy(case_t, numberTerm , operatorTerm):
+    operator_temp = operatorTerm
+    
+    # print('case : ', list(case_t))
+    # print('numberTerm : ',numberTerm)
+    # print('operatorTerm : ', operatorTerm)
+    caculator_result = 0
+    
+    for i in range(3):
+        while case_t[i] in operator_temp:
+            for index_op, operator in enumerate(operator_temp):
+                
+                if operator == case_t[i] and index_op < len(numberTerm)-1:
+                    operator_temp.pop(index_op)
+                    
+                    left = numberTerm.pop(index_op)
+                    right = numberTerm.pop(index_op)
+
+                    if operator == '*':
+                        cal = int(left) * int(right)
+                    elif operator == '+':
+                        cal = int(left) + int(right)
+                    elif operator == '-':
+                        cal = int(left) - int(right)
+                    numberTerm.insert(index_op ,cal)
+                    break
+    return numberTerm.pop()
+    
+
+def solution(expression):
+    answer = 0
+    
+    # operator case 
+    operators = ['*' , '+', '-']
+    cases = list(permutations(operators))
+    
+    operator_order = []
+    for term in expression:
+        if not term.isdigit() :
+            operator_order.append(term)
+            
+    temp = expression.replace('*' , '#').replace('+', '#').replace('-' , '#')
+    
+    all_result = []
+    
+    for case in cases:    
+        operator_order = []
+        for term in expression:
+            if not term.isdigit() :
+                operator_order.append(term)
+        result = calculatorBy(case, temp.split('#') , operator_order)
+        all_result.append(abs(int(result)))
+    print(all_result)
+    
+    return max(all_result)
