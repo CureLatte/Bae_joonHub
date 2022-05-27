@@ -1,0 +1,20 @@
+def solution(routes):
+    answer = 0
+    routes.sort(key=lambda x:x[1])
+    print(routes)
+    
+    target = routes[0][1]
+    
+    
+    for route in routes:
+        print(target)
+        if route[0] <= target<= route[1]:
+            print('pass')
+            continue
+        else:
+            print('change')
+            target = route[1]
+            answer += 1
+                
+    
+    return answer + 1
