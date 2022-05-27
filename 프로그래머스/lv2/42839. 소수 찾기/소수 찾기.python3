@@ -1,0 +1,35 @@
+from itertools import permutations
+import math
+
+def is_prime(n):
+    if n == 2:
+        return True
+    if n == 1 or n == 0:
+        return False
+    for a in range(2, n -1):
+        if n % a == 0:
+            return False
+    return True
+
+
+def solution(numbers):
+    answer = 0
+    all_case = []
+    for i in range(1, len(numbers)+1):
+        temp_case = list(permutations(list(numbers), i))
+        for case in temp_case:
+            all_case.append(case)
+    
+    all_case_int = []
+    
+    for case in all_case:
+        number = ''
+        for test in case:
+            number += test
+        number = int(number)
+        if is_prime(number):
+            all_case_int.append(number)
+            
+    print(is_prime(79))
+    print(list(set(all_case_int)))
+    return len(list(set(all_case_int)))
