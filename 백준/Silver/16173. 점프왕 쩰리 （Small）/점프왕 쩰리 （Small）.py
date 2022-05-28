@@ -16,14 +16,14 @@ def dfs(x, y):
 
     if x >= map_size or y >= map_size or x <= -1 or y <= -1:
         return False
-    
-    if graph[x][y] == "#":
+
+    if graph[x][y] == False:
         return False
 
     # 현재 방문한 노드
     if graph[x][y] != -1:
         move_point = graph[x][y]
-        graph[x][y] = '#'
+        graph[x][y] = False
         if dfs(x + move_point, y):
             return True
         if dfs(x, y + move_point):
