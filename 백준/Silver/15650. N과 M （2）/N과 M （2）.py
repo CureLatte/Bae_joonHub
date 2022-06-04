@@ -1,6 +1,8 @@
+# 이진탐색 연습장
+# 외우기 코드!
+
 import sys
 from collections import deque
-from itertools import combinations
 
 input = sys.stdin.readline
 
@@ -10,12 +12,21 @@ table = list(range(1, n+1))
 
 temp = []
 
-case = {}
 
-a = list(combinations(table, m))
+def search(deep, result, t):
+    if deep == m:
+        temp.append(result)
+        return result
+    v = []
+    for i in t:
+        v.append(i)
+        search(deep + 1, result + str(i), sorted(list(set(t) - set(v))))
 
-for _ in a:
-    answer = ''
-    for i in _:
-        answer += str(i) + ' '
-    print(answer)
+
+search(0, '', table)
+
+for a in temp:
+    for _ in a:
+        print(int(_), end=' ')
+    print('')
+# print(len(temp))
